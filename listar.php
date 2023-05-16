@@ -7,16 +7,15 @@
             $nome=$_GET['nomeproduto'];
             $preco=$_GET['preco'];
             $codigo=$_GET['codigo'];
+            $extrafield=$_GET['extrafield'];
 
-            $comando="INSERT INTO produtos(nome, preco, codigo) VALUES ('$nome', '$preco', '$codigo')";
+            $comando="INSERT INTO produtos(nome, preco, codigo, extrafield) VALUES ('$nome', '$preco', '$codigo', '$extrafield')";
             $enviar=mysqli_query($conn, $comando);
 
             if($enviar) {
-                $_SESSION['mensagem'] = "Sucesso no cadastro!";
                 header("location:index.php");
                 exit;
             }else{
-                $_SESSION['mensagem'] = "NÃO DEUUUUUUUUUUU!";
                 header("location:index.php");
                 exit;
             }
