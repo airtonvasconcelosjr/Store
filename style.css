@@ -77,3 +77,16 @@
     background-color: #f5f5f5;
     cursor: pointer;
 }  
+
+.footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 6px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
