@@ -1,6 +1,10 @@
 <?php
     session_start();
     require_once("servidor.php");
+
+    if (isset($_GET['tipo'])) {
+        $tipo = $_GET['tipo'];
+    }
     if (isset($_POST['delete-button'])) {
         $selectedProducts = isset($_POST['selected_products']) ? $_POST['selected_products'] : array();
 
@@ -34,8 +38,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
-
 <form action="" method="post">
     <div class="button-container">
         <button type="submit" name="add-button" class="add-button">Add</button>
@@ -55,12 +57,17 @@
                         <input type="checkbox" class="delete-checkbox" name="selected_products[]" value="<?= $produto['id'] ?>">
                     </div>
                     <div class="card-content">
-                        <span>Código: <?= $produto['codigo'] ?></span>
+                        <span>SKU: <?= $produto['codigo'] ?></span>
                         <p>Nome: <?= $produto['nome'] ?></p>
                         <p>Preço: $ <?= $produto['preco'] ?></p>
-                        <p><?= $produto['disponibilidade'] == "1" ? "Disponível" : "Indisponível" ?></p>
-                        <?php if (isset($produto['extrafield'])) { ?>
-                            <p><?= $produto['extrafield'] ?></p>
+                        <?php if ($produto['tipo'] === 'Forniture' ) { ?>
+                            <p>Altura: <?= $produto['altura'] ?> cm</p>
+                            <p>Largura: <?= $produto['largura'] ?> cm</p>
+                            <p>Comprimento: <?= $produto['comprimento'] ?> cm</p>
+                        <?php } elseif ($produto['tipo'] === 'Book' ) { ?>
+                            <p>Peso: <?= $produto['extrafield'] ?> Kg</p>
+                        <?php } elseif (isset($produto['extrafield'])) { ?>
+                            <p><?= $produto['extrafield'] ?> Mb</p>
                         <?php } ?>
                     </div>
                 </div>
@@ -68,6 +75,7 @@
         <?php } ?>
     </div>
 </form>
+
 <hr>
 
 <div class="footer">
