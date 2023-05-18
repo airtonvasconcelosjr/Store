@@ -45,7 +45,7 @@ if (isset($_GET['enviar'])) {
                 $enviar = mysqli_query($conn, $comando);
 
                 if ($enviar) {
-                    header("location:index.php");
+                    header("Location:lista.php");
                     exit;
                 } else {
                     header("location:index.php");
