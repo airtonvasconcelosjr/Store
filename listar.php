@@ -3,10 +3,10 @@
     require_once("servidor.php");
 
     if (isset($_GET['enviar'])) {
-        if (!empty($_GET['nomeproduto']) || !empty($_GET['preco']) || !empty($_GET['codigo'])) {
+        if (!empty($_GET['nomeproduto']) || !empty($_GET['preco']) || !empty($_GET['sku'])) {
             $nome = $_GET['nomeproduto'];
             $preco = $_GET['preco'];
-            $codigo = $_GET['codigo'];
+            $sku = $_GET['sku'];
             $extrafield = $_GET['extrafield'];
 
             if (isset($_GET['tipo'])) {
@@ -36,7 +36,7 @@
                     $comprimento = ""; 
                 }
 
-                $comando = "INSERT INTO produtos (nome, preco, codigo, tipo, extrafield, altura, largura, comprimento) VALUES ('$nome', '$preco', '$codigo', '$tipo', '$extrafield', '$altura', '$largura', '$comprimento')";
+                $comando = "INSERT INTO produtos (nome, preco, sku, tipo, extrafield, altura, largura, comprimento) VALUES ('$nome', '$preco', '$sku', '$tipo', '$extrafield', '$altura', '$largura', '$comprimento')";
                 $enviar = mysqli_query($conn, $comando);
 
                 if ($enviar) {

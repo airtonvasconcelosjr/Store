@@ -30,7 +30,7 @@
        SKU: 
         <input 
             type="number" 
-            name="codigo"
+            name="sku"
             required=True
         >
    </label>

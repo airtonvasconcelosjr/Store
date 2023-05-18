@@ -14,7 +14,6 @@
             $deleteResult = mysqli_query($conn, $deleteQuery);
 
             if ($deleteResult) {
-                $_SESSION['mensagem'] = "Produtos excluídos com sucesso";
                 echo '<script>alert("Produtos excluídos com sucesso"); window.location.href = "'.$_SERVER['PHP_SELF'].'";</script>';
                 exit;
             } else {
@@ -29,7 +28,7 @@
         header("Location: index.php");
         exit;
     }
-    $comando = "SELECT * FROM produtos ORDER BY id DESC";
+    $comando = "SELECT * FROM produtos ORDER BY id";
     $enviar = mysqli_query($conn, $comando);
     $resultado = mysqli_fetch_all($enviar, MYSQLI_ASSOC);
 ?>
@@ -57,7 +56,7 @@
                         <input type="checkbox" class="delete-checkbox" name="selected_products[]" value="<?= $produto['id'] ?>">
                     </div>
                     <div class="card-content">
-                        <span>SKU: <?= $produto['codigo'] ?></span>
+                        <span>SKU: <?= $produto['sku'] ?></span>
                         <p>Nome: <?= $produto['nome'] ?></p>
                         <p>Preço: $ <?= $produto['preco'] ?></p>
                         <?php if ($produto['tipo'] === 'Forniture' ) { ?>
