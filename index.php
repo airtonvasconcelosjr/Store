@@ -21,8 +21,8 @@
 
 <form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
     <div class="button-container">
-        <button type="button" onclick="window.location.href = '/Store/lista.php';" class="list-button">Listar</button>
-        <button type="button" onclick="window.location.reload()" id="cancel-product-btn" name="cancel-button" class="cancel-product-btn">Cancel</button>
+        <button type="submit" name="enviar" class="list-button">Save</button>
+        <button type="button" onclick="window.location.href = '/Store/lista.php';" class="list-button">Cancel</button>
     </div>
     <div class="title">Lista de Produtos</div>
     <hr>
@@ -52,7 +52,7 @@
    </label>
    <label>
        Tipo:
-       <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)">
+       <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)" required="true">
            <option value="">Selecione</option>
            <option value="DVD">DVD</option>
            <option value="Forniture">Forniture</option>
@@ -70,17 +70,17 @@
         ><br>
         <a id="extraInfo"></a>
    </div>
-   
-   
-   <input type="submit" name="enviar" class="button" onclick="return verificarSKU();">
-
 </form>
 
 <div class="footer">
     <hr><h1>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
 </div>
-
 <script>
+    
+
+</script>
+<script>
+
     function showExtraFields(value) {
         const extraFieldsDiv = document.getElementById("extraFields");
         const extraLabel = document.getElementById("extraLabel");
