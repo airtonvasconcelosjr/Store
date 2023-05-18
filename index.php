@@ -72,7 +72,8 @@
    </div>
    
    
-   <input type="submit" name="enviar" class="button">
+   <input type="submit" name="enviar" class="button" onclick="return verificarSKU();">
+
 </form>
 
 <div class="footer">
@@ -118,5 +119,7 @@
         const tipoInput = document.getElementById("tipoInput");
         tipoInput.value = value;
     }
+
+
 </script>
 
