@@ -45,10 +45,10 @@ if (isset($_GET['enviar'])) {
                 $enviar = mysqli_query($conn, $comando);
 
                 if ($enviar) {
-                    header("Location:lista.php");
+                    header("Location:index.php");
                     exit;
                 } else {
-                    header("location:index.php");
+                    header("location:add.php");
                     exit;
                 }
             }
