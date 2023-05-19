@@ -27,7 +27,7 @@
         <button type="submit" name="enviar" class="list-button">Save</button>
         <button type="button" onclick="window.location.href = '/Store/index.php';" class="list-button">Cancel</button>
     </div>
-    <div class="title">Lista de Produtos</div>
+    <div class="title">Products List</div>
     <hr>
    <label class="mt-4">SKU:</label>
         <input 
@@ -41,15 +41,15 @@
             name="nomeproduto"
             required=True
             >
-            <label>Preço:</label>
+            <label>Price:</label>
             <input 
             type="text" 
             name="preco"
             required=True
             >
-   <label>Tipo: </label>
+   <label>Type: </label>
         <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)" required="true">
-           <option value="">Selecione</option>
+           <option value="">Select</option>
            <option value="DVD">DVD</option>
            <option value="Forniture">Forniture</option>
            <option value="Book">Book</option>
@@ -96,11 +96,11 @@
             extraLabel.innerText = "Medidas (HxWxL):";
             extraInput.type = "text";
             extraFieldsDiv.innerHTML = `
-                <label class="ml-4">Altura:</label>
+                <label class="ml-4">Height:</label>
                     <input type="text" name="altura" value="" required>
-                <label>Largura:</label>
+                <label>Width: </label>
                     <input type="text" class="forniture-label" name="largura" value="" required>
-                <label>Comprimento:</label>
+                <label>Length:</label>
                     <input type="text" class="forniture-label" name="comprimento" value="" required>
                 <p class="info-label"> Provide measures in cm </p>`;
             return;

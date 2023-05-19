@@ -74,14 +74,14 @@
                         <span class="mb-1">SKU: <?= $produto['sku'] ?></span>
                         <p>Name: <?= $produto['nome'] ?></p>
                         <p>Price: $ <?= $produto['preco'] ?></p>
-                        <p>Peso: <?= $produto['extrafield'] ?> Kg</p>
+                        <p>Weight: <?= $produto['extrafield'] ?> Kg</p>
                     </div>
                 <?php } elseif (isset($produto['extrafield'])) { ?>
                     <div class="card-content mb-2 mt-5 d-flex flex-column justify-content-center align-items-center">
                         <span class="mb-1">SKU: <?= $produto['sku'] ?></span>
                         <p>Name: <?= $produto['nome'] ?></p>
                         <p>Price: $ <?= $produto['preco'] ?></p>
-                        <p><?= $produto['extrafield'] ?> Mb</p>
+                        <p>Capacity: <?= $produto['extrafield'] ?> Mb</p>
                     </div>
                 <?php } ?>
             </div>

@@ -60,21 +60,45 @@
   }
   
   .card-container {
-    margin-left: 5%;
+    margin-left: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
   }
-  
+
+
   .card {
     width: 280px;
     margin: 10px;
     padding: 10px;
-    background-color: #fff;
-    border: 1px solid var(--secondary-color);
+    background-color: rgba(255, 255, 255, 1.5); /* Cor de fundo com transparência */
+    border: none; /* Remover a borda */
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4 ); /* Ajustar a sombra */
+  
+  
+    /* Define a posição inicial para animação */
+    transform: translateY(100px);
+  
+    /* Define a animação */
+    animation-name: slideIn;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
   }
+  
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  
   
   .card-header {
     display: flex;
