@@ -1,125 +1,86 @@
 <?php
     session_start();
     require_once("servidor.php");
-    if (isset($_POST['cancel-button'])) {
+
+    if (isset($_GET['tipo'])) {
+        $tipo = $_GET['tipo'];
+    }
+    if (isset($_POST['delete-button'])) {
+        $selectedProducts = isset($_POST['selected_products']) ? $_POST['selected_products'] : array();
+
+        if (!empty($selectedProducts)) {
+            $productIds = implode(',', $selectedProducts);
+            $deleteQuery = "DELETE FROM produtos WHERE id IN ($productIds)";
+            $deleteResult = mysqli_query($conn, $deleteQuery);
+
+            if ($deleteResult) {
+                echo '<script>alert("Produtos excluídos com sucesso"); window.location.href = "'.$_SERVER['PHP_SELF'].'";</script>';
+                exit;
+            } else {
+                $_SESSION['mensagem'] = "Erro ao excluir produtos";
+                echo '<script>alert("Erro na exclusão...");</script>';
+                exit;
+            }
+        }
     }
 
-    if(!empty($_SESSION['mensagem'])) {
-        echo $_SESSION['mensagem'];
-        unset($_SESSION['mensagem']);
+    if (isset($_POST['add-button'])) {
+        header("Location: add.php");
         exit;
     }
-    if (isset($_POST['list-button'])) {
-        header("Location: lista.php");
-        exit;
-    }
-
+    $comando = "SELECT * FROM produtos ORDER BY id";
+    $enviar = mysqli_query($conn, $comando);
+    $resultado = mysqli_fetch_all($enviar, MYSQLI_ASSOC);
 ?>
+
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
+<form action="" method="post">
     <div class="button-container">
-        <button type="submit" name="enviar" class="list-button">Save</button>
-        <button type="button" onclick="window.location.href = '/Store/lista.php';" class="list-button">Cancel</button>
+        <button type="submit" name="add-button" class="add-button">Add</button>
+        <button type="submit" id="delete-product-btn" name="delete-button" class="delete-product-btn">MASS DELETE</button>
     </div>
     <div class="title">Lista de Produtos</div>
     <hr>
-   <label>
-       SKU: 
-        <input 
-            type="number" 
-            name="sku"
-            required=True
-        >
-   </label>
-   <label>
-       Nome: 
-        <input 
-            type="text" 
-            name="nomeproduto"
-            required=True
-        >
-   </label>
-   <label>
-       Preço: 
-        <input 
-            type="text" 
-            name="preco"
-            required=True
-        >
-   </label>
-   <label>
-       Tipo:
-       <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)" required="true">
-           <option value="">Selecione</option>
-           <option value="DVD">DVD</option>
-           <option value="Forniture">Forniture</option>
-           <option value="Book">Book</option>
-       </select>
-   </label>
-   
-   <div id="extraFields" style="display: none;">
-       <label id="extraLabel"></label>
-        <input 
-            type="text" 
-            name="extrafield" 
-            id="extraInput"
-            required=True
-        ><br>
-        <a id="extraInfo"></a>
-   </div>
+    <div class="card-container">
+        <?php if (empty($resultado)) { ?>
+            <div class="no-items-message">
+                Nenhum item cadastrado
+            </div>
+        <?php } else { ?>
+            <?php foreach ($resultado as $produto) { ?>
+                <div class="card">
+                    <div class="card-header">
+                        <input type="checkbox" class="delete-checkbox" name="selected_products[]" value="<?= $produto['id'] ?>">
+                    </div>
+                    <div class="card-content">
+                        <span>SKU: <?= $produto['sku'] ?></span>
+                        <p>Nome: <?= $produto['nome'] ?></p>
+                        <p>Preço: $ <?= $produto['preco'] ?></p>
+                        <?php if ($produto['tipo'] === 'Forniture' ) { ?>
+                            <p>Altura: <?= $produto['altura'] ?> cm</p>
+                            <p>Largura: <?= $produto['largura'] ?> cm</p>
+                            <p>Comprimento: <?= $produto['comprimento'] ?> cm</p>
+                        <?php } elseif ($produto['tipo'] === 'Book' ) { ?>
+                            <p>Peso: <?= $produto['extrafield'] ?> Kg</p>
+                        <?php } elseif (isset($produto['extrafield'])) { ?>
+                            <p><?= $produto['extrafield'] ?> Mb</p>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+    </div>
 </form>
+
+<hr>
 
 <div class="footer">
     <hr><h1>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
 </div>
-<script>
-    
-
-</script>
-<script>
-
-    function showExtraFields(value) {
-        const extraFieldsDiv = document.getElementById("extraFields");
-        const extraLabel = document.getElementById("extraLabel");
-        const extraInput = document.getElementById("extraInput");
-
-        extraFieldsDiv.style.display = value !== "" ? "block" : "none";
-
-        switch (value) {
-        case "DVD":
-            extraLabel.innerText = "Size (MB):";
-            extraInput.type = "number";
-            extraInfo.innerText = "Provide dvd capacity in MB" 
-            break;
-        case "Forniture":
-            extraLabel.innerText = "Medidas (HxWxL):";
-            extraInput.type = "text";
-            extraFieldsDiv.innerHTML = `
-                <label>Altura:
-                    <input type="text" name="altura" value="" required>
-                </label>
-                <label>Largura:
-                    <input type="text" name="largura" value="" required>
-                </label>
-                <label>Comprimento:
-                    <input type="text" name="comprimento" value="" required>
-                </label>
-                <a> Provide measures in cm </a>`;
-            return;
-        case "Book":
-            extraInfo.innerText = "Provide book weith in kg" 
-            extraLabel.innerText = "Peso (KG):";
-            extraInput.type = "text";
-            break;
-    }
-
-        const tipoInput = document.getElementById("tipoInput");
-        tipoInput.value = value;
-    }
 
 
-</script>
+
 
