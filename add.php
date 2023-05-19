@@ -17,48 +17,44 @@
 ?>
 <head>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
-
-<form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
-    <div class="button-container">
+<body class="custom-background">
+    
+    <form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
+        <div class="button-container">
         <button type="submit" name="enviar" class="list-button">Save</button>
         <button type="button" onclick="window.location.href = '/Store/index.php';" class="list-button">Cancel</button>
     </div>
     <div class="title">Lista de Produtos</div>
     <hr>
-   <label>
-       SKU: 
+   <label class="mt-4">SKU:</label>
         <input 
             type="number" 
             name="sku"
             required=True
-        >
-   </label>
-   <label>
-       Nome: 
-        <input 
+            >
+   <label>Name:</label>
+   <input 
             type="text" 
             name="nomeproduto"
             required=True
-        >
-   </label>
-   <label>
-       Preço: 
-        <input 
+            >
+            <label>Preço:</label>
+            <input 
             type="text" 
             name="preco"
             required=True
-        >
-   </label>
-   <label>
-       Tipo:
-       <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)" required="true">
+            >
+   <label>Tipo: </label>
+        <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)" required="true">
            <option value="">Selecione</option>
            <option value="DVD">DVD</option>
            <option value="Forniture">Forniture</option>
            <option value="Book">Book</option>
-       </select>
-   </label>
+         </select>
+  
    
    <div id="extraFields" style="display: none;">
        <label id="extraLabel"></label>
@@ -67,15 +63,17 @@
             name="extrafield" 
             id="extraInput"
             required=True
-        ><br>
-        <a id="extraInfo"></a>
-   </div>
-</form>
+            ><br>
+            <p class="info-label" id="extraInfo"></p>
+        </div>
+    </form>
+    
+    <div class="footer">
+        <hr><h6>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
+    </div>
 
-<div class="footer">
-    <hr><h1>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
-</div>
-<script>
+</body>
+    <script>
     
 
 </script>
@@ -98,19 +96,16 @@
             extraLabel.innerText = "Medidas (HxWxL):";
             extraInput.type = "text";
             extraFieldsDiv.innerHTML = `
-                <label>Altura:
+                <label class="ml-4">Altura:</label>
                     <input type="text" name="altura" value="" required>
-                </label>
-                <label>Largura:
-                    <input type="text" name="largura" value="" required>
-                </label>
-                <label>Comprimento:
-                    <input type="text" name="comprimento" value="" required>
-                </label>
-                <a> Provide measures in cm </a>`;
+                <label>Largura:</label>
+                    <input type="text" class="forniture-label" name="largura" value="" required>
+                <label>Comprimento:</label>
+                    <input type="text" class="forniture-label" name="comprimento" value="" required>
+                <p class="info-label"> Provide measures in cm </p>`;
             return;
         case "Book":
-            extraInfo.innerText = "Provide book weith in kg" 
+            extraInfo.innerText = "Provide book weight in kg" 
             extraLabel.innerText = "Peso (KG):";
             extraInput.type = "text";
             break;

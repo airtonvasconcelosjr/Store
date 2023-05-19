@@ -1,130 +1,198 @@
-
-.title-container {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-}
-
-.title {
-    font-size: 20px;
-    font-weight: bold;
+/* Define as cores da paleta de cores frias */
+:root {
+    --primary-color: #3498db;  /* Azul */
+    --secondary-color: #95a5a6;  /* Cinza */
+    --accent-color: #2ecc71;  /* Verde */
+    --gray-color: #b4b8b8; /*cinza meu*/
+  }
+  
+  /* Estilo geral da página */
+  .custom-background {
+    background-image: url(images/bg-gray.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 44px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    margin-left: 35px;
+    text-shadow: 0 2px 4px rgb(116, 114, 123);
+  }
 
-.button-container {
+  
+  .button-container {
     display: flex;
     justify-content: flex-end;
     position: relative;
     top: 20px;
     right: 10px;
-}
-
-.add-button {
-    position: relative;
-    padding: 10px;
-    border: 1px solid #ccc;
+    margin-top: 15px;
+    margin-bottom: -40px;
+  }
+  
+  .add-button,
+  .delete-product-btn {
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    background-color: #f5f5f5;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
-}
-
-.card-container {
-    margin-left: 20px;
+    margin: 5px;
+  }
+  
+  .delete-product-btn {
+    background-color: var(--secondary-color);
+  }
+  
+  .card-container {
+    margin-left: 5%;
     display: flex;
     flex-wrap: wrap;
-    justify-content:flex-start;
-}
-
-.card {
+    justify-content: flex-start;
+  }
+  
+  .card {
     width: 280px;
     margin: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-.card-header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-}
-
-.card-header .checkbox {
+  }
+  
+  .custom-card-header {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+  
+  
+  .card-header .delete-checkbox {
     margin-right: 5px;
-}
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
+  
+  .card-content {
     text-align: center;
-}
-
-.card-content p {
-    margin-bottom: 4px; 
-}
-
-.delete-product-btn {
-    margin-left: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-}  
-
-.footer {
+  }
+  
+  .card-content span {
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .card-content p {
+    color: var(--secondary-color);
+  }
+  
+  .footer {
     margin-top: auto;
+    margin-bottom: 0;
     text-align: center;
     font-size: 6px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.form label {
+    color: var(--secondary-color);
+  }
+    
+  body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+  }
+  
+  /* Estilo dos botões do formulário */
+  .list-button,
+  .cancel-product-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .cancel-product-btn {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Estilo das opções do tipo */
+  .opcoes {
+    font-size: 16px;
+    color: var(--secondary-color);
+  }
+  
+  /* Estilo das mensagens de erro */
+  .error-message {
+    color: red;
+    font-style: italic;
+  }
+  
+  .form label {
     display: block;
+    font-size: 20px;
+    margin-left: 30px;
+    font-weight: 500;
     margin-bottom: 10px;
-}
 
-.list-button {
-    margin-left: 10px;
+  }
+  
+  .form input,
+  .form select {
+    width: 95%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-} 
-
-.cancel-product-btn {
-    margin-left: 10px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+  }
+  
+  .opcoes {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-} 
+    background-color: #fff;
+    color: var(--secondary-color);
+    font-size: 20px;
+  }
+  
+  .opcoes option {
+    color: var(--secondary-color);
+  }
 
-.button{
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-    margin-top: 10px;
-}
+  .label-forniture {
+    margin-left: 10px; /* Ajuste o valor conforme necessário */
+  }
 
-.opcoes{
-    font-size: 17px;
-}
-
+  .info-label{
+    color: red;
+    font-size: 12px;
+    margin-left: 25px;
+    text-decoration: none ;
+    margin-top: -25px;
+  }
+  
+  

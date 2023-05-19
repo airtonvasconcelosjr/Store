@@ -34,15 +34,20 @@
 ?>
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"></link>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
-
-<form action="" method="post">
-    <div class="button-container">
-        <button type="submit" name="add-button" class="add-button">Add</button>
+<body class="custom-background">
+    
+    <form action="" method="post">
+        <div class="button-container">
+            <button type="submit" name="add-button" class="add-button">Add</button>
         <button type="submit" id="delete-product-btn" name="delete-button" class="delete-product-btn">MASS DELETE</button>
     </div>
-    <div class="title">Lista de Produtos</div>
+    <div class="title">
+        <p>Lista de Produtos</p>
+    </div>
     <hr>
     <div class="card-container">
         <?php if (empty($resultado)) { ?>
@@ -52,34 +57,46 @@
         <?php } else { ?>
             <?php foreach ($resultado as $produto) { ?>
                 <div class="card">
-                    <div class="card-header">
-                        <input type="checkbox" class="delete-checkbox" name="selected_products[]" value="<?= $produto['id'] ?>">
+            <div class="card-header bg-white custom-card-header">
+                <input type="checkbox" class="delete-checkbox" name="selected_products[]" value="<?= $produto['id'] ?>">
+            </div>
+                <?php if ($produto['tipo'] === 'Forniture') { ?>
+                    <div class="card-content mb-2 mt-2 d-flex flex-column justify-content-center align-items-center">
+                        <span class="mb-1">SKU: <?= $produto['sku'] ?></span>
+                        <p>Name: <?= $produto['nome'] ?></p>
+                        <p>Price: $ <?= $produto['preco'] ?></p>
+                        <p>Height: <?= $produto['altura'] ?> cm</p>
+                        <p>Width: <?= $produto['largura'] ?> cm</p>
+                        <p>Length: <?= $produto['comprimento'] ?> cm</p>
                     </div>
-                    <div class="card-content">
-                        <span>SKU: <?= $produto['sku'] ?></span>
-                        <p>Nome: <?= $produto['nome'] ?></p>
-                        <p>Preço: $ <?= $produto['preco'] ?></p>
-                        <?php if ($produto['tipo'] === 'Forniture' ) { ?>
-                            <p>Altura: <?= $produto['altura'] ?> cm</p>
-                            <p>Largura: <?= $produto['largura'] ?> cm</p>
-                            <p>Comprimento: <?= $produto['comprimento'] ?> cm</p>
-                        <?php } elseif ($produto['tipo'] === 'Book' ) { ?>
-                            <p>Peso: <?= $produto['extrafield'] ?> Kg</p>
-                        <?php } elseif (isset($produto['extrafield'])) { ?>
-                            <p><?= $produto['extrafield'] ?> Mb</p>
-                        <?php } ?>
+                <?php } elseif ($produto['tipo'] === 'Book') { ?>
+                    <div class="card-content mb-2 mt-5 d-flex flex-column justify-content-center align-items-center">
+                        <span class="mb-1">SKU: <?= $produto['sku'] ?></span>
+                        <p>Name: <?= $produto['nome'] ?></p>
+                        <p>Price: $ <?= $produto['preco'] ?></p>
+                        <p>Peso: <?= $produto['extrafield'] ?> Kg</p>
                     </div>
-                </div>
+                <?php } elseif (isset($produto['extrafield'])) { ?>
+                    <div class="card-content mb-2 mt-5 d-flex flex-column justify-content-center align-items-center">
+                        <span class="mb-1">SKU: <?= $produto['sku'] ?></span>
+                        <p>Name: <?= $produto['nome'] ?></p>
+                        <p>Price: $ <?= $produto['preco'] ?></p>
+                        <p><?= $produto['extrafield'] ?> Mb</p>
+                    </div>
+                <?php } ?>
+            </div>
+
             <?php } ?>
         <?php } ?>
     </div>
 </form>
 
-<hr>
 
 <div class="footer">
-    <hr><h1>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
+    <h6><hr>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
 </div>
+
+</body>
 
 
 
