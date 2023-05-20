@@ -60,7 +60,7 @@
             <div class="card-header bg-white custom-card-header">
                 <input type="checkbox" class="delete-checkbox" name="selected_products[]" value="<?= $produto['id'] ?>">
             </div>
-                <?php if ($produto['tipo'] === 'Forniture') { ?>
+                <?php if ($produto['tipo'] === 'Furniture') { ?>
                     <div class="card-content mb-2 mt-2 d-flex flex-column justify-content-center align-items-center">
                         <span class="mb-1">SKU: <?= $produto['sku'] ?></span>
                         <p>Name: <?= $produto['nome'] ?></p>

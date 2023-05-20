@@ -12,7 +12,7 @@ if (isset($_GET['enviar'])) {
         if (isset($_GET['tipo'])) {
             $tipo = $_GET['tipo'];
 
-            if ($tipo === "Forniture") {
+            if ($tipo === "Furniture") {
                 if (!empty($_GET['altura'])) {
                     $altura = $_GET['altura'];
                 } else {

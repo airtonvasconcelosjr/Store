@@ -22,99 +22,94 @@
 </head>
 <body class="custom-background">
     
-    <form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
-        <div class="button-container">
+<form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
+    <div class="button-container">
         <button type="submit" name="enviar" class="list-button">Save</button>
-        <button type="button" onclick="window.location.href = '/Store/index.php';" class="list-button">Cancel</button>
+        <button type="button" onclick="window.location.href = '/index.php';" class="list-button">Cancel</button>
     </div>
     <div class="title">Products List</div>
     <hr>
-   <label class="mt-4">SKU:</label>
-        <input 
-            type="number" 
-            name="sku"
-            required=True
-            >
-   <label>Name:</label>
-   <input 
-            type="text" 
-            name="nomeproduto"
-            required=True
-            >
-            <label>Price:</label>
-            <input 
-            type="text" 
-            name="preco"
-            required=True
-            >
-   <label>Type: </label>
-        <select name="tipo" class="opcoes" onchange="showExtraFields(this.value)" required="true">
-           <option value="">Select</option>
-           <option value="DVD">DVD</option>
-           <option value="Forniture">Forniture</option>
-           <option value="Book">Book</option>
-         </select>
-  
-   
-   <div id="extraFields" style="display: none;">
-       <label id="extraLabel"></label>
+    <label class="mt-4">SKU:</label>
+    <input 
+        type="number" 
+        name="sku"
+        id="sku"
+        required
+    >
+    <label>Name:</label>
+    <input 
+        type="text" 
+        name="nomeproduto"
+        id="name"
+        required
+    >
+    <label>Price:</label>
+    <input 
+        type="text" 
+        name="preco"
+        id="price"
+        required
+    >
+    <label>Type: </label>
+    <select name="tipo" class="opcoes" id="productType" onchange="showExtraFields(this.value)" required>
+        <option value="">Select</option>
+        <option value="DVD">DVD</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Book">Book</option>
+    </select>
+
+    <div id="extraFields" style="display: none;">
+        <label id="extraLabel"></label>
         <input 
             type="text" 
             name="extrafield" 
             id="extraInput"
-            required=True
-            ><br>
-            <p class="info-label" id="extraInfo"></p>
-        </div>
-    </form>
-    
-    <div class="footer">
-        <hr><h6>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
+        ><br>
+        <p class="info-label" id="extraInfo"></p>
     </div>
+</form>
 
-</body>
-    <script>
-    
+<div class="footer">
+    <hr><h6>Scandiweb Test assignment &copy; <?php echo date("Y"); ?> 
+</div>
 
-</script>
 <script>
-
     function showExtraFields(value) {
         const extraFieldsDiv = document.getElementById("extraFields");
         const extraLabel = document.getElementById("extraLabel");
         const extraInput = document.getElementById("extraInput");
+        const extraInfo = document.getElementById("extraInfo");
 
         extraFieldsDiv.style.display = value !== "" ? "block" : "none";
 
         switch (value) {
-        case "DVD":
-            extraLabel.innerText = "Size (MB):";
-            extraInput.type = "number";
-            extraInfo.innerText = "Provide dvd capacity in MB" 
-            break;
-        case "Forniture":
-            extraLabel.innerText = "Medidas (HxWxL):";
-            extraInput.type = "text";
-            extraFieldsDiv.innerHTML = `
-                <label class="ml-4">Height:</label>
-                    <input type="text" name="altura" value="" required>
-                <label>Width: </label>
-                    <input type="text" class="forniture-label" name="largura" value="" required>
-                <label>Length:</label>
-                    <input type="text" class="forniture-label" name="comprimento" value="" required>
-                <p class="info-label"> Provide measures in cm </p>`;
-            return;
-        case "Book":
-            extraInfo.innerText = "Provide book weight in kg" 
-            extraLabel.innerText = "Peso (KG):";
-            extraInput.type = "text";
-            break;
+            case "DVD":
+                extraLabel.innerText = "Size (MB):";
+                extraInput.setAttribute("id", "size");
+                extraInput.setAttribute("type", "number");
+                extraInfo.innerText = "Provide DVD capacity in MB";
+                break;
+            case "Furniture":
+                extraLabel.innerText = "Medidas (HxWxL):";
+                extraInput.setAttribute("type", "text");
+                extraFieldsDiv.innerHTML = `
+                    <label class="ml-4">Height:</label>
+                    <input type="text" name="altura" id="height" value="" required>
+                    <label>Width: </label>
+                    <input type="text" class="forniture-label"  name="largura" id="width" value="" required>
+                    <label>Length:</label>
+                    <input type="text" class="forniture-label" name="comprimento" id="length" value="" required>
+                    <p class="info-label"> Provide measures in cm </p>`;
+                break;
+            case "Book":
+                extraLabel.innerText = "Peso (KG):";
+                extraInput.setAttribute("id", "weight");
+                extraInput.setAttribute("type", "text");
+                extraInfo.innerText = "Provide book weight in kg";
+                break;
+            default:
+                extraFieldsDiv.innerHTML = "";
+                break;
+        }
     }
-
-        const tipoInput = document.getElementById("tipoInput");
-        tipoInput.value = value;
-    }
-
-
 </script>
-
