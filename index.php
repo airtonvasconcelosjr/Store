@@ -41,11 +41,11 @@
 <body class="custom-background">
     
     <form action="" method="post">
-        <div class="button-container">
+        <div class="button-container-list">
             <button type="submit" name="add-button" class="add-button">Add</button>
         <button type="submit" id="delete-product-btn" name="delete-button" class="delete-product-btn">MASS DELETE</button>
     </div>
-    <div class="title">
+    <div class="title-list">
         <p>Lista de Produtos</p>
     </div>
     <hr>
