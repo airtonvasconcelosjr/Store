@@ -14,10 +14,10 @@
             $deleteResult = mysqli_query($conn, $deleteQuery);
 
             if ($deleteResult) {
-                echo '<script>alert("Produtos excluídos com sucesso"); window.location.href = "'.$_SERVER['PHP_SELF'].'";</script>';
+                echo '<script>alert("Products deleted successfully"); window.location.href = "'.$_SERVER['PHP_SELF'].'";</script>';
                 exit;
             } else {
-                $_SESSION['mensagem'] = "Erro ao excluir produtos";
+                $_SESSION['mensagem'] = "Error";
                 echo '<script>alert("Erro na exclusão...");</script>';
                 exit;
             }
@@ -42,17 +42,17 @@
     
     <form action="" method="post">
         <div class="button-container-list">
-            <button type="submit" name="add-button" class="add-button">Add</button>
+            <button type="submit" name="add-button" class="add-button">ADD</button>
         <button type="submit" id="delete-product-btn" name="delete-button" class="delete-product-btn">MASS DELETE</button>
     </div>
     <div class="title-list">
-        <p>Lista de Produtos</p>
+        <p>Product List</p>
     </div>
     <hr>
     <div class="card-container">
         <?php if (empty($resultado)) { ?>
             <div class="no-items-message">
-                Nenhum item cadastrado
+                No product Registered...
             </div>
         <?php } else { ?>
             <?php foreach ($resultado as $produto) { ?>

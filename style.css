@@ -131,7 +131,6 @@
   body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
   }
   
   .list-button,
@@ -223,5 +222,12 @@
       margin-bottom: -120px;
       margin-top: 20px;
       margin-right: 5%;
+  }
+
+
+  @media (max-width: 1000px) {
+    .container {
+      height: 60vh;
+    }
   }
 

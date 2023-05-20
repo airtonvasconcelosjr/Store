@@ -27,13 +27,13 @@
                 <form action="listar.php" class="form" id="product_form" method="get" accept-charset="utf-8">
                     <div class="button-container">
                         <button type="submit" name="enviar" class="list-button">Save</button>
-                        <button type="button" onclick="window.location.href = '/Store/index.php';" class="cancel-product-btn">Cancel</button>
+                        <button type="button" onclick="window.location.href = '/index.php';" class="cancel-product-btn">Cancel</button>
                     </div>
                     <div class="title">Products List</div>
                     <hr>
                     <label class="mt-2">SKU</label>
                     <input 
-                        type="number" 
+                        type="text" 
                         name="sku"
                         id="sku"
                         required
