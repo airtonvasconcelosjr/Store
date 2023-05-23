@@ -51,7 +51,10 @@
                         name="preco"
                         id="price"
                         required
-                    >
+                        pattern="[0-9,\.]+"
+                        onblur="validatePrice()"
+                        >
+                        <div id="priceError" class="info-label"></div>
                     <label>Type </label>
                     <select name="tipo" class="opcoes" id="productType" onchange="showExtraFields(this.value)" required>
                         <option value="">Select</option>
@@ -99,11 +102,14 @@
                 extraInput.setAttribute("type", "text");
                 extraFieldsDiv.innerHTML = `
                     <label>Height</label>
-                    <input type="text" class="forniture-label name="altura" id="height" value="" required>
+                    <input type="text" class="forniture-label name="altura" id="height" value="" required pattern="[0-9,\.]+" onblur="validateHeight()">
+                    <div id="heightError" class="info-label"></div>
                     <label>Width </label>
-                    <input type="text" class="forniture-label"  name="largura" id="width" value="" required>
+                    <input type="text" class="forniture-label"  name="largura" id="width" value="" required pattern="[0-9,\.]+" onblur="validateWidth()">
+                    <div id="widthError" class="info-label"></div>
                     <label>Length</label>
-                    <input type="text" class="forniture-label" name="comprimento" id="length" value="" required>
+                    <input type="text" class="forniture-label" name="comprimento" id="length" value="" required pattern="[0-9,\.]+" onblur="validateLength()">
+                    <div id="lengthError" class="mb-2 info-label"></div>
                     <p class="info-label"> Provide measures in cm </p>`;
                 break;
             case "Book":
@@ -115,6 +121,50 @@
             default:
                 extraFieldsDiv.innerHTML = "";
                 break;
+        }
+    }
+
+    function validatePrice() {
+        const priceInput = document.getElementById("price");
+        const priceError = document.getElementById("priceError");
+
+        if (!priceInput.checkValidity()) {
+            priceError.textContent = "Please enter a valid price";
+        } else {
+            priceError.textContent = "";
+        }
+    }
+
+    function validateHeight() {
+        const priceInput = document.getElementById("height");
+        const priceError = document.getElementById("heightError");
+
+        if (!priceInput.checkValidity()) {
+            priceError.textContent = " Insert height only numbers, in cm";
+        } else {
+            priceError.textContent = "";
+        }
+    }
+
+    function validateWidth() {
+        const priceInput = document.getElementById("width");
+        const priceError = document.getElementById("widthError");
+
+        if (!priceInput.checkValidity()) {
+            priceError.textContent = " Insert width only numbers, in cm";
+        } else {
+            priceError.textContent = "";
+        }
+    }
+
+    function validateLength() {
+        const priceInput = document.getElementById("length");
+        const priceError = document.getElementById("lengthError");
+
+        if (!priceInput.checkValidity()) {
+            priceError.textContent = " Insert length only numbers, in cm";
+        } else {
+            priceError.textContent = "";
         }
     }
 </script>
