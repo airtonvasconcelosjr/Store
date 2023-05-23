@@ -31,7 +31,7 @@
                     </div>
                     <div class="title">Products List</div>
                     <hr>
-                    <label class="mt-2">SKU</label>
+                    <label class="mt-2 text-center">SKU</label>
                     <input 
                         type="text" 
                         name="sku"
